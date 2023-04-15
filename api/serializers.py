@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import(User)
+from .models import(User,Medicine,UserDetail,Doctor)
 from rest_framework.permissions import (IsAuthenticated)
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -24,3 +24,19 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model=User
         fields=['id','username','email']
+
+class MedicineSerializer(serializers.ModelSerializer):
+    image=serializers.ImageField(max_length=None,allow_empty_file=False,use_url=True,required=False)
+    class Meta:
+        model=Medicine
+        fields="__all__"
+
+class UserDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=UserDetail
+        fields="__all__"
+
+class DoctorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Doctor
+        fields='__all__'

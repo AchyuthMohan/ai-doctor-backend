@@ -1,11 +1,14 @@
 from django.contrib import admin
 from django.urls import path,include
 from rest_framework.routers import DefaultRouter
-from .views import (BlacklistTokenView,LoggedInUserView,RegisterView,)
+from .views import (BlacklistTokenView,LoggedInUserView,RegisterView,MedicineViewSet,UserDetailViewSet,DoctorViewSet)
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 
 router=DefaultRouter()
 router.register('register',RegisterView,basename='register')
+router.register('medicines',MedicineViewSet,basename='medicines')
+router.register('user-detail',UserDetailViewSet,basename='user-detail')
+router.register('doctors',DoctorViewSet,basename='doctors')
 
 
 urlpatterns = [

@@ -1,6 +1,6 @@
 from rest_framework import generics,mixins,viewsets,status
-from .models import (User,)
-from .serializers import (UserSerializer,RegisterSerializer,)
+from .models import (User,Medicine,UserDetail,Doctor)
+from .serializers import (UserSerializer,RegisterSerializer,MedicineSerializer,UserDetailSerializer,DoctorSerializer)
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
@@ -23,4 +23,18 @@ class LoggedInUserView(APIView):
 class RegisterView(viewsets.GenericViewSet,mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.ListModelMixin):
     serializer_class=RegisterSerializer
     queryset=User.objects.all()
+
+class MedicineViewSet(viewsets.GenericViewSet,mixins.ListModelMixin,mixins.RetrieveModelMixin):
+    serializer_class=MedicineSerializer
+    queryset=Medicine.objects.all()
+
+class UserDetailViewSet(viewsets.GenericViewSet,mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.ListModelMixin,mixins.UpdateModelMixin):
+    serializer_class=UserDetailSerializer
+    queryset=UserDetail.objects.all()
+
+class DoctorViewSet(viewsets.GenericViewSet,mixins.ListModelMixin,mixins.RetrieveModelMixin):
+    serializer_class=DoctorSerializer
+    queryset=Doctor.objects.all()
+
+    
 
