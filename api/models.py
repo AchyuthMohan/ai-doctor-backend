@@ -81,3 +81,17 @@ class Doctor(models.Model):
     def __str__(self):
         return self.name
 
+class MedicinePurchase(models.Model):
+    user_foreign=models.ForeignKey(User,on_delete=models.CASCADE)
+    medicine_Foreign=models.ForeignKey
+    medicine_image=models.URLField()
+    date_of_purchase=models.DateField()
+    medicine_name=models.CharField(max_length=200)
+    medicine_price=models.IntegerField()
+    medicine_no_of=models.IntegerField()
+
+    def __str__(self):
+        return self.name
+    
+
+
