@@ -80,4 +80,14 @@ class Doctor(models.Model):
 
     def __str__(self):
         return self.name
+class Book_appointment(models.Model):
+    user_foreign=models.ForeignKey(User,on_delete=models.CASCADE)
+    Doctor_foreign=models.ForeignKey
+    date=models.DateField()
+    name_of_doctor=models.CharField(max_length=200)
+    meet_link=models.URLField()
+    special=models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
 
