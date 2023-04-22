@@ -85,6 +85,8 @@ class Book_appointment(models.Model):
     user_foreign=models.ForeignKey(User,on_delete=models.CASCADE)
     Doctor_foreign=models.ForeignKey
     date=models.DateField()
+    time=models.TimeField()
+    subject=models.TextField(max_length=200)
     name_of_doctor=models.CharField(max_length=200)
     meet_link=models.URLField()
     special=models.CharField(max_length=200)
