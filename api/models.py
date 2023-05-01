@@ -56,7 +56,15 @@ class Medicine(models.Model):
     name=models.CharField(max_length=100)
     image=models.ImageField(upload_to='medicine_images',blank=True,null=True)
     price=models.FloatField()
-    qty=models.IntegerField()
+    weight=models.IntegerField()
+    type=models.CharField(max_length=300)
+    manufacturer=models.CharField(max_length=300)
+    contains=models.CharField(max_length=300)
+    color=models.CharField(max_length=300)
+    storage=models.CharField(max_length=300)
+    dosage=models.CharField(max_length=300)
+    in_stock=models.IntegerField()
+    
     def __str__(self):
         return self.name
 
@@ -66,7 +74,7 @@ class UserDetail(models.Model):
     age=models.IntegerField()
     gender=models.CharField(choices=GENDER_CHOICES,max_length=200)
     dob=models.DateField()
-
+    user_image=models.ImageField(upload_to='user_images',blank=True,null=True)
     def __str__(self):
         return self.actual_name
     
@@ -92,7 +100,7 @@ class Book_appointment(models.Model):
     special=models.CharField(max_length=200)
 
     def __str__(self):
-        return self.name
+        return self.name_of_doctor
 
 class MedicinePurchase(models.Model):
     user_foreign=models.ForeignKey(User,on_delete=models.CASCADE)

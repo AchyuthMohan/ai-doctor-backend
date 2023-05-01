@@ -32,6 +32,7 @@ class MedicineSerializer(serializers.ModelSerializer):
         fields="__all__"
 
 class UserDetailSerializer(serializers.ModelSerializer):
+    user_image=serializers.ImageField(max_length=None,allow_empty_file=False,use_url=True,required=False)
     class Meta:
         model=UserDetail
         fields="__all__"
