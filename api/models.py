@@ -64,7 +64,7 @@ class Medicine(models.Model):
     storage=models.CharField(max_length=300)
     dosage=models.CharField(max_length=300)
     in_stock=models.IntegerField()
-    
+
     def __str__(self):
         return self.name
 
@@ -75,6 +75,7 @@ class UserDetail(models.Model):
     gender=models.CharField(choices=GENDER_CHOICES,max_length=200)
     dob=models.DateField()
     user_image=models.ImageField(upload_to='user_images',blank=True,null=True)
+
     def __str__(self):
         return self.actual_name
     
@@ -86,9 +87,13 @@ class Doctor(models.Model):
     experience=models.IntegerField()
     image=models.ImageField(upload_to='doctor_images',blank=True,null=True)
     gender=models.CharField(choices=GENDER_CHOICES,max_length=200)
-
+    consultation_days=models.CharField(max_length=100)
+    consultation_time=models.CharField(max_length=100)
+    education=models.CharField(max_length=200)
+    
     def __str__(self):
         return self.name
+    
 class Book_appointment(models.Model):
     user_foreign=models.ForeignKey(User,on_delete=models.CASCADE)
     Doctor_foreign=models.ForeignKey
