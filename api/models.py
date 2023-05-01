@@ -109,7 +109,7 @@ class Book_appointment(models.Model):
 
 class MedicinePurchase(models.Model):
     user_foreign=models.ForeignKey(User,on_delete=models.CASCADE)
-    medicine_Foreign=models.ForeignKey
+    medicine_Foreign=models.ForeignKey(Medicine,on_delete=models.CASCADE)
     medicine_image=models.URLField()
     date_of_purchase=models.DateField()
     medicine_name=models.CharField(max_length=200)
