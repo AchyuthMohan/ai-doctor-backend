@@ -5,6 +5,7 @@ from .serializers import (UserSerializer,RegisterSerializer,MedicineSerializer,U
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
+from rest_framework.generics import RetrieveAPIView
 # Create your views here.
 class BlacklistTokenView(APIView):
     permission_classes=[IsAuthenticated]
@@ -29,9 +30,24 @@ class MedicineViewSet(viewsets.GenericViewSet,mixins.ListModelMixin,mixins.Retri
     serializer_class=MedicineSerializer
     queryset=Medicine.objects.all()
 
-class UserDetailViewSet(viewsets.GenericViewSet,mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.ListModelMixin,mixins.UpdateModelMixin):
+class UserDetailViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin,
+                        mixins.ListModelMixin, mixins.UpdateModelMixin,
+                        mixins.RetrieveModelMixin):
     serializer_class=UserDetailSerializer
     queryset=UserDetail.objects.all()
+    lookup_field = 'user_foreign'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        user_foreign = self.kwargs.get('user_foreign', None)
+        if user_foreign is not None:
+            queryset = queryset.filter(user_foreign=user_foreign)
+        return queryset
+
+class UserDetailAPIView(RetrieveAPIView):
+    queryset = UserDetail.objects.all()
+    serializer_class = UserDetailSerializer
+    lookup_field = 'user_foreign'
 
 class DoctorViewSet(viewsets.GenericViewSet,mixins.ListModelMixin,mixins.RetrieveModelMixin):
     serializer_class=DoctorSerializer
