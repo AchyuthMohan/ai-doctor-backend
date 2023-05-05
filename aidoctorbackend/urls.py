@@ -5,8 +5,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('chatbot/', include('chatbot.urls')),
     path('',include('api.urls')),
-
 ]
 admin.site.site_header  =  "AI Doctor Backend"  
 admin.site.site_title  =  "AI Doctor admin site"
