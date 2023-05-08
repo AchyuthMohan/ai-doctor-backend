@@ -27,8 +27,8 @@ model = NeuralNet(input_size,hidden_size,output_size).to(device)
 model.load_state_dict(model_state)
 model.eval()
 
-bot_name = "Boctor"
-print("Boctor - your virtual Doctor. With quick responses, our AI bot is here to provide you with medical support ands assitance, anytime and anywhere.")
+bot_name ="Dr. Matrix"
+print("Dr. Matrix - your virtual Doctor. With quick responses, our AI bot is here to provide you with medical support ands assitance, anytime and anywhere.")
 print("Let's chat! (type 'quit' to exit)")
 def get_response(msg):
     # sentence = input('You: ')
