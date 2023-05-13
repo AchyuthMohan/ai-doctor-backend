@@ -115,7 +115,7 @@ class MedicinePurchase(models.Model):
     medicine_name=models.CharField(max_length=200)
     medicine_price=models.IntegerField()
     medicine_no_of=models.IntegerField()
-
+    del_address=models.TextField(max_length=500)
     def __str__(self):
         return self.medicine_name
     
