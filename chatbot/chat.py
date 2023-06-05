@@ -31,11 +31,10 @@ bot_name ="Dr. Matrix"
 print("Dr. Matrix - your virtual Doctor. With quick responses, our AI bot is here to provide you with medical support ands assitance, anytime and anywhere.")
 print("Let's chat! (type 'quit' to exit)")
 def get_response(msg):
-    # sentence = input('You: ')
-    # if sentence == "quit":
-    #     break
     sentence = tokenize(msg)
     X = bag_of_words(sentence,all_words)
+    # print("all_words",all_words)
+    # print("X: ",X)
     X = X.reshape(1,X.shape[0])
     X = torch.from_numpy(X).to(device)
 
@@ -58,3 +57,8 @@ def get_response(msg):
     # else:
         # print(f"{bot_name}: I am Sorry But couldn't get recognize the symptoms.")
         
+
+
+# torch module is used to search for all words from intents file 
+# after getting all words we create a binary list of 0 and 1 to note the pressence of a word in the given message
+# 
