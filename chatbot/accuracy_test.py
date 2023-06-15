@@ -4,9 +4,11 @@ import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
 from sklearn.metrics import confusion_matrix
+import matplotlib.pyplot as plt
 
 from model import NeuralNet
-from nltk_utils import bag_of_words,tokenize
+from nltk_utils import bag_of_words, tokenize
+
 # Load the intents data
 with open('intents.json') as f:
     intents = json.load(f)
@@ -61,3 +63,16 @@ print(cm)
 # Calculate the accuracy
 accuracy = np.trace(cm) / np.sum(cm)
 print("Accuracy:", accuracy)
+
+# Plot the accuracy graph
+plt.figure(figsize=(8, 6))
+plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
+plt.title('Confusion Matrix')
+plt.colorbar()
+tick_marks = np.arange(len(tags))
+plt.xticks(tick_marks, tags, rotation=45)
+plt.yticks(tick_marks, tags)
+plt.xlabel('Predicted')
+plt.ylabel('True')
+plt.tight_layout()
+plt.show()
